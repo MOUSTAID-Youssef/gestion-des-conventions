@@ -1,0 +1,112 @@
+/* Sidebar & Navbar Background */
+#sidebar, .navbar {
+    background: #003366 !important; /* Dark Blue */
+    color: white;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar */
+.navbar .navbar-brand {
+    font-size: 18px;
+    font-weight: bold;
+    color: white !important; /* No more yellow */
+}
+
+/* Navbar Links */
+.navbar .nav-link {
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover {
+    color: #00BFFF !important; /* Light Blue */
+}
+
+/* Sidebar */
+#sidebar {
+    transition: 0.3s ease;
+    width: 250px;
+    overflow: hidden;
+}
+
+#sidebar.hidden {
+    width: 0;
+}
+
+#sidebar h4 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #E3F2FD;
+    font-size: 18px;
+}
+
+/* Sidebar Menu Items */
+.nav-link {
+    color: #D1E8FF;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-size: 15px;
+}
+
+/* Sidebar Icons */
+.nav-link i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* Hover Effect */
+.nav-link:hover, .nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding-left: 18px;
+}
+
+/* Dropdown Menu */
+#interventionMenu {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #00BFFF;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+#interventionMenu .nav-link {
+    padding-left: 30px;
+}
+
+/* Sidebar Collapse Fix */
+#sidebar.hidden {
+    width: 0;
+}
+
+#sidebar.hidden .nav-link {
+    opacity: 0;
+    pointer-events: none; /* Disable interaction when hidden */
+}
+
+#sidebar.hidden .nav-item {
+    display: none; /* Hide all items when sidebar is hidden */
+}
+
+/* Fixing Blue Line When Sidebar is Hidden */
+#sidebar.hidden .nav-item {
+    border: none !important;
+    background: none !important;
+}
+
+#main-content {
+    transition: 0.3s ease;
+    margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 0;
+    }
+    #main-content {
+        margin-left: 0;
+    }
+}
