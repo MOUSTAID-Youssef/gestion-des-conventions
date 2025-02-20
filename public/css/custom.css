@@ -26,7 +26,8 @@
 #sidebar {
     transition: 0.3s ease;
     width: 250px;
-    overflow: hidden;
+    overflow-y: auto;
+    height: 100vh;
 }
 
 #sidebar.hidden {
@@ -96,7 +97,9 @@
     border: none !important;
     background: none !important;
 }
-
+#sidebar ul {
+    padding-bottom: 15px;
+}
 #main-content {
     transition: 0.3s ease;
     margin-left: 250px;
