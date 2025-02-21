@@ -1,3 +1,13 @@
+/* Make the Navbar Sticky */
+.navbar {
+    position: sticky;  /* This makes the navbar sticky */
+    top: 0;  /* Sticks the navbar to the top */
+    z-index: 1000;  /* Ensures that the navbar stays on top of other content */
+    background: #003366 !important; /* Dark Blue */
+    color: white;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+}
+
 /* Sidebar & Navbar Background */
 #sidebar, .navbar {
     background: #003366 !important; /* Dark Blue */
@@ -9,7 +19,7 @@
 .navbar .navbar-brand {
     font-size: 18px;
     font-weight: bold;
-    color: white ; /* No more yellow */
+    color: white; /* No more yellow */
 }
 
 /* Navbar Links */
@@ -19,7 +29,7 @@
 }
 
 .navbar .nav-link:hover {
-    color: #00BFFF ; /* Light Blue */
+    color: #00BFFF; /* Light Blue */
 }
 
 /* Sidebar */
@@ -33,14 +43,6 @@
 
 #sidebar.hidden {
     width: 0;
-}
-
-#sidebar h4 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #E3F2FD;
-    font-size: 18px;
 }
 
 /* Sidebar Menu Items */
@@ -98,9 +100,11 @@
     border: none !important;
     background: none !important;
 }
+
 #sidebar ul {
     padding-bottom: 5px;
 }
+
 #sidebar ul#gestionMenu {
     padding-bottom: 65px;
 }
@@ -116,5 +120,25 @@
     }
     #main-content {
         margin-left: 0;
+    }
+}
+
+/* Keep the table responsive without scrolling */
+.table-fixed {
+    width: 100%;
+    table-layout: fixed;  /* Ensures that the table columns don't resize based on content */
+    border-collapse: collapse;
+    word-wrap: break-word;
+}
+
+.table-fixed th, .table-fixed td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Responsive behavior on smaller screens (no scrolling) */
+@media (max-width: 768px) {
+    .table-fixed th, .table-fixed td {
+        font-size: 12px; /* Adjust text size to fit the screen */
     }
 }
