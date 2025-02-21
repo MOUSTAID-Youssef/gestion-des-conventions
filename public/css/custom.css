@@ -9,7 +9,7 @@
 .navbar .navbar-brand {
     font-size: 18px;
     font-weight: bold;
-    color: white !important; /* No more yellow */
+    color: white ; /* No more yellow */
 }
 
 /* Navbar Links */
@@ -19,13 +19,14 @@
 }
 
 .navbar .nav-link:hover {
-    color: #00BFFF !important; /* Light Blue */
+    color: #00BFFF ; /* Light Blue */
 }
 
 /* Sidebar */
 #sidebar {
+    position: fixed;
     transition: 0.3s ease;
-    width: 250px;
+    width: 240px;
     overflow-y: auto;
     height: 100vh;
 }
@@ -98,11 +99,15 @@
     background: none !important;
 }
 #sidebar ul {
-    padding-bottom: 15px;
+    padding-bottom: 5px;
 }
+#sidebar ul#gestionMenu {
+    padding-bottom: 65px;
+}
+
 #main-content {
     transition: 0.3s ease;
-    margin-left: 250px;
+    margin-left: 220px;
 }
 
 @media (max-width: 768px) {

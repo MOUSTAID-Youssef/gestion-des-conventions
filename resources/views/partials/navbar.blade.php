@@ -1,16 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
     <div class="container-fluid">
         <button class="btn btn-outline-light me-2" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <a class="navbar-brand fw-bold text-white" href="#">WATEC dictribution</a>
+        <img src="./photos/logo.png" style="width: 140px;margin-right: 8px;" alt="watec distribution logo">
+        <a class="navbar-brand fw-bold text-white" href="">Gestion des interventions</a>
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#"><i class="fas fa-user"></i> Profile</a>
+                    <a class="nav-link text-white" href="#"><i class="fas fa-user"></i>Bienvenue: user</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#"><i class="fas fa-cog"></i> Settings</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                 </li>

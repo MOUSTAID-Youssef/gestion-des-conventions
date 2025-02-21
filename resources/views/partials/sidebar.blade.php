@@ -4,7 +4,6 @@
             <a class="nav-link text-white" href="#"><i class="fas fa-house me-2"></i> Accueil</a>
         </li>
 
-        <!-- Intervention with Dropdown -->
         <li class="nav-item">
             <a class="nav-link text-white d-flex justify-content-between align-items-center" href="#" data-bs-toggle="collapse" data-bs-target="#interventionMenu">
                 <div><i class="fas fa-tools me-2"></i> Intervention</div>
@@ -22,26 +21,26 @@
                 <i class="fas fa-chevron-down"></i>
             </a>
             <ul class="collapse list-unstyled ps-3" id="gestionMenu">
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-eye me-2"></i> Utilisateur</a></li>
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-plus-circle me-2"></i> Membre</a></li>
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-users me-2"></i> Equipe</a></li>
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-cogs me-2"></i> Materiel</a></li>
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-tree me-2"></i> Nature Terrain</a></li>
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-cogs me-2"></i> Type Intervention</a></li>
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-bug me-2"></i> Cause</a></li>
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-map-marker-alt me-2"></i> Ville</a></li>
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-info-circle me-2"></i> Informations</a></li>
+                <li><a class="nav-link text-white" href="{{ route('utilisateur') }}"><i class="fa-regular fa-user"></i></i> Utilisateur</a></li>
+                <li><a class="nav-link text-white" href="{{ route('membre') }}"><i class="fa-solid fa-user"></i></i> Membre</a></li>
+                <li><a class="nav-link text-white" href="{{ route('equipe') }}"><i class="fas fa-users me-2"></i> Equipe</a></li>
+                <li><a class="nav-link text-white" href="{{ route('materiel') }}"><i class="fa-solid fa-toolbox"></i> Materiel</a></li>
+                <li><a class="nav-link text-white" href="{{ route('terrain') }}"><i class="fas fa-tree me-2"></i> Nature Terrain</a></li>
+                <li><a class="nav-link text-white" href="{{ route('type') }}"><i class="fa-solid fa-triangle-exclamation"></i> Type Intervention</a></li>
+                <li><a class="nav-link text-white" href="{{ route('cause') }}"><i class="fa-solid fa-question"></i> Cause</a></li>
+                <li><a class="nav-link text-white" href="{{ route('ville') }}"><i class="fas fa-map-marker-alt me-2"></i> Ville</a></li>
+                <li><a class="nav-link text-white" href="{{ route('informations') }}"><i class="fas fa-info-circle me-2"></i> Informations</a></li>
             </ul>
         </li>
         
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link text-white" href="#"><i class="fas fa-user me-2"></i> Mon Profile</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" href="#"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>
         </li>
-    </ul>
+    </ul> --}}
 </div>
 
 <script>

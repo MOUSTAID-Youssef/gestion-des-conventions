@@ -1,11 +1,42 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/utilisateur', function () {
+    return view('pages.utilisateur');
+})->name('utilisateur');
+
+Route::get('/membre', function () {
+    return view('pages.membre');
+})->name('membre');
+
+Route::get('/equipe', function () {
+    return view('pages.equipe');
+})->name('equipe');
+
+Route::get('/materiel', function () {
+    return view('pages.materiel');
+})->name('materiel');
+
+Route::get('/terrain', function () {
+    return view('pages.terrain');
+})->name('terrain');
+
+Route::get('/type', function () {
+    return view('pages.type');
+})->name('type');
+
+Route::get('/cause', function () {
+    return view('pages.cause');
+})->name('cause');
+
+Route::get('/ville', function () {
+    return view('pages.ville');
+})->name('ville');
+
+Route::get('/informations', function () {
+    return view('pages.informations');
+})->name('informations');
 
 
 Route::get('/', function () {
