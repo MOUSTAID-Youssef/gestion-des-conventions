@@ -10,7 +10,7 @@
                 <i class="fas fa-chevron-down"></i>
             </a>
             <ul class="collapse list-unstyled ps-3" id="interventionMenu">
-                <li><a class="nav-link text-white" href="#"><i class="fas fa-eye me-2"></i> Consulter</a></li>
+                <li><a class="nav-link text-white" href="{{ route('consulter_intervention') }}"><i class="fas fa-eye me-2"></i> Consulter</a></li>
                 <li><a class="nav-link text-white" href="#"><i class="fas fa-plus-circle me-2"></i> Ajouter</a></li>
             </ul>
         </li>
@@ -57,3 +57,4 @@
         }
     });
 </script>
+

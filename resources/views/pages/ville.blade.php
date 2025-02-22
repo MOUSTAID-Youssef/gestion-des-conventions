@@ -6,7 +6,7 @@
     <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 15px;">
         <h1 class="me-3">Liste des villes</h1>
         <a href="" class="btn btn-success">
-            <i class="fas fa-user-plus"></i> Ajouter ville
+            <i class="fa-solid fa-plus"></i> Ajouter ville
         </a>
     </div>
     <table class="table table-striped table-fixed">

@@ -38,6 +38,10 @@ Route::get('/informations', function () {
     return view('pages.informations');
 })->name('informations');
 
+Route::get('/consulter_intervention', function () {
+    return view('pages.consulter_intervention');
+})->name('consulter_intervention');
+
 
 Route::get('/', function () {
     return view('auth.login');

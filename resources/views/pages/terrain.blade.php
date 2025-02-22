@@ -6,7 +6,7 @@
     <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 15px;">
         <h1 class="me-3">Liste des Natures de terrains</h1>
         <a href="" class="btn btn-success">
-            <i class="fas fa-user-plus"></i> Ajouter nature de terrain
+            <i class="fa-solid fa-plus"></i> Ajouter nature de terrain
         </a>
     </div>
     
