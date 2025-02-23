@@ -20,8 +20,8 @@
                 <th>Ville</th>
                 <th>Adresse</th>
                 <th>Utilisateur</th>
-                {{-- <th>Observations</th> --}}
-                <th>Nature terrain</th>
+                <th>Observations</th>
+                {{-- <th>Nature terrain</th> --}}
                 <th>Matériels</th>
                 <th>Modifier</th>
                 <th>Supprimer</th>
@@ -54,8 +54,8 @@
                 <td>Casablanca</td>
                 <td>Avenue Mohammed V</td>
                 <td>RACHID</td>
-                {{-- <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td> --}}
                 <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
+                {{-- <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td> --}}
                 <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
                 <td><button class="btn btn-warning"><i class="fas fa-edit"></i></button></td>
                 <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>

@@ -14,10 +14,10 @@
 
 <body>
 
-    @include('partials.navbar')
+    @include('layouts.navbar')
 
     <div class="d-flex">
-        @include('partials.sidebar')
+        @include('layouts.sidebar')
 
         <div id="main-content" class="content p-4">
             @yield('content')

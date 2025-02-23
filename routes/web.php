@@ -1,46 +1,48 @@
 <?php
 
+use App\Http\Controllers\UtilisateurController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/utilisateur', function () {
-    return view('pages.utilisateur');
-})->name('utilisateur');
+
+Route::get('/utilisateur', [UtilisateurController::class, 'index'])->name('utilisateur.index');
+Route::get('/utilisateur/create', [UtilisateurController::class, 'create'])->name('utilisateur.create');
+
 
 Route::get('/membre', function () {
-    return view('pages.membre');
-})->name('membre');
+    return view('membre.index');
+})->name('membre.index');
 
 Route::get('/equipe', function () {
-    return view('pages.equipe');
-})->name('equipe');
+    return view('equipe.index');
+})->name('equipe.index');
 
 Route::get('/materiel', function () {
-    return view('pages.materiel');
-})->name('materiel');
+    return view('materiel.index');
+})->name('materiel.index');
 
 Route::get('/terrain', function () {
-    return view('pages.terrain');
-})->name('terrain');
+    return view('terrain.index');
+})->name('terrain.index');
 
 Route::get('/type', function () {
-    return view('pages.type');
-})->name('type');
+    return view('type.index');
+})->name('type.index');
 
 Route::get('/cause', function () {
-    return view('pages.cause');
-})->name('cause');
+    return view('cause.index');
+})->name('cause.index');
 
 Route::get('/ville', function () {
-    return view('pages.ville');
-})->name('ville');
+    return view('ville.index');
+})->name('ville.index');
 
 Route::get('/informations', function () {
-    return view('pages.informations');
-})->name('informations');
+    return view('informations.index');
+})->name('informations.index');
 
-Route::get('/consulter_intervention', function () {
-    return view('pages.consulter_intervention');
-})->name('consulter_intervention');
+Route::get('/intervention', function () {
+    return view('intervention.index');
+})->name('intervention.index');
 
 
 Route::get('/', function () {

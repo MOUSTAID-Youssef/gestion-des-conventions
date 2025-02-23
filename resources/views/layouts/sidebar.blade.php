@@ -10,7 +10,7 @@
                 <i class="fas fa-chevron-down"></i>
             </a>
             <ul class="collapse list-unstyled ps-3" id="interventionMenu">
-                <li><a class="nav-link text-white" href="{{ route('consulter_intervention') }}"><i class="fas fa-eye me-2"></i> Consulter</a></li>
+                <li><a class="nav-link text-white" href="{{ route('intervention.index') }}"><i class="fas fa-eye me-2"></i> Consulter</a></li>
                 <li><a class="nav-link text-white" href="#"><i class="fas fa-plus-circle me-2"></i> Ajouter</a></li>
             </ul>
         </li>
@@ -21,15 +21,15 @@
                 <i class="fas fa-chevron-down"></i>
             </a>
             <ul class="collapse list-unstyled ps-3" id="gestionMenu">
-                <li><a class="nav-link text-white" href="{{ route('utilisateur') }}"><i class="fa-regular fa-user"></i></i> Utilisateur</a></li>
-                <li><a class="nav-link text-white" href="{{ route('membre') }}"><i class="fa-solid fa-user"></i></i> Membre</a></li>
-                <li><a class="nav-link text-white" href="{{ route('equipe') }}"><i class="fas fa-users me-2"></i> Equipe</a></li>
-                <li><a class="nav-link text-white" href="{{ route('materiel') }}"><i class="fa-solid fa-toolbox"></i> Materiel</a></li>
-                <li><a class="nav-link text-white" href="{{ route('terrain') }}"><i class="fas fa-tree me-2"></i> Nature Terrain</a></li>
-                <li><a class="nav-link text-white" href="{{ route('type') }}"><i class="fa-solid fa-triangle-exclamation"></i> Type Intervention</a></li>
-                <li><a class="nav-link text-white" href="{{ route('cause') }}"><i class="fa-solid fa-question"></i> Cause</a></li>
-                <li><a class="nav-link text-white" href="{{ route('ville') }}"><i class="fas fa-map-marker-alt me-2"></i> Ville</a></li>
-                <li><a class="nav-link text-white" href="{{ route('informations') }}"><i class="fas fa-info-circle me-2"></i> Informations</a></li>
+                <li><a class="nav-link text-white" href="{{ route('utilisateur.index') }}"><i class="fa-regular fa-user"></i></i> Utilisateur</a></li>
+                <li><a class="nav-link text-white" href="{{ route('membre.index') }}"><i class="fa-solid fa-user"></i></i> Membre</a></li>
+                <li><a class="nav-link text-white" href="{{ route('equipe.index') }}"><i class="fas fa-users me-2"></i> Equipe</a></li>
+                <li><a class="nav-link text-white" href="{{ route('materiel.index') }}"><i class="fa-solid fa-toolbox"></i> Materiel</a></li>
+                {{-- <li><a class="nav-link text-white" href="{{ route('terrain') }}"><i class="fas fa-tree me-2"></i> Nature Terrain</a></li> --}}
+                <li><a class="nav-link text-white" href="{{ route('type.index') }}"><i class="fa-solid fa-triangle-exclamation"></i> Type Intervention</a></li>
+                <li><a class="nav-link text-white" href="{{ route('cause.index') }}"><i class="fa-solid fa-question"></i> Cause</a></li>
+                <li><a class="nav-link text-white" href="{{ route('ville.index') }}"><i class="fas fa-map-marker-alt me-2"></i> Ville</a></li>
+                <li><a class="nav-link text-white" href="{{ route('informations.index') }}"><i class="fas fa-info-circle me-2"></i> Informations</a></li>
             </ul>
         </li>
         

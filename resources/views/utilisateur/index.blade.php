@@ -4,7 +4,7 @@
 <div style="margin-left: 18px; text-align:center">
     <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 15px;">
         <h1 class="me-3">Liste des utilisateurs</h1>
-        <a href="" class="btn btn-success">
+        <a href="{{ route('utilisateur.create') }}" class="btn btn-success">
             <i class="fas fa-user-plus"></i> Ajouter utilisateur
         </a>
     </div>
