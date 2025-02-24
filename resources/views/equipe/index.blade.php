@@ -4,11 +4,17 @@
     <div style="margin-left: 18px; text-align:center">
         <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 15px;">
             <h1 class="me-3">Liste des équipes</h1>
-            <a href="" class="btn btn-success">
+            <a href="{{ route('equipe.create') }}" class="btn btn-success">
                 <i class="fas fa-user-plus"></i> Ajouter équipe
             </a>
         </div>
-
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle"></i>
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <table class="table table-striped table-fixed">
             <thead>
                 <tr>
@@ -21,54 +27,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Equipe 1</td>
-                    <td>Marrakech</td>
-                    <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
-                    <td><button class="btn btn-warning"><i class="fas fa-edit"></i></button></td>
-                    <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Equipe 1</td>
-                    <td>Marrakech</td>
-                    <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
-                    <td><button class="btn btn-warning"><i class="fas fa-edit"></i></button></td>
-                    <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Equipe 1</td>
-                    <td>Marrakech</td>
-                    <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
-                    <td><button class="btn btn-warning"><i class="fas fa-edit"></i></button></td>
-                    <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Equipe 1</td>
-                    <td>Marrakech</td>
-                    <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
-                    <td><button class="btn btn-warning"><i class="fas fa-edit"></i></button></td>
-                    <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Equipe 1</td>
-                    <td>Marrakech</td>
-                    <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
-                    <td><button class="btn btn-warning"><i class="fas fa-edit"></i></button></td>
-                    <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Equipe 1</td>
-                    <td>Marrakech</td>
-                    <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
-                    <td><button class="btn btn-warning"><i class="fas fa-edit"></i></button></td>
-                    <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
+                @foreach ($equipes as $equipe)
+                    <tr>
+                        <td>{{ $equipe->id }}</td>
+                        <td>{{ $equipe->designation }}</td>
+                        <td>{{ $equipe->ville ? $equipe->ville->nom : 'N/A' }}</td>
+                        <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
+                        <td><a href="{{ route('equipe.edit', ['equipe' => $equipe]) }}"><button class="btn btn-warning"><i
+                                        class="fas fa-edit"></i></button></a></td>
+                        <td>
+                            <form action="{{ route('equipe.delete', ['equipe' => $equipe]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

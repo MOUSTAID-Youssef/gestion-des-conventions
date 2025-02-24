@@ -12,7 +12,7 @@ class CreateInformationsTable extends Migration
             $table->id();
             $table->string('raison_sociale')->nullable();
             $table->string('adresse')->nullable();
-            $table->string('telephone', 20)->nullable();
+            $table->string('telephone', 25)->nullable();
             $table->string('email')->nullable();
             $table->timestamps();
         });

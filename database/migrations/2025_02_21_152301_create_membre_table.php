@@ -19,7 +19,7 @@ class CreateMembreTable extends Migration
             $table->string('email');
             $table->string('adresse');
             $table->foreignId('id_ville')->constrained('ville');
-            $table->string('Statut');
+            $table->string('statut');
             $table->timestamps();
         });
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

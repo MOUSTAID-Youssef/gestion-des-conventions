@@ -21,6 +21,7 @@ class Ville extends Model
         'lat2',
         'lng1',
         'lng2',
+        'updated_at',
     ];
 
     // The model automatically assumes the 'created_at' and 'updated_at' fields

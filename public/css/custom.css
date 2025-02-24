@@ -142,3 +142,15 @@
         font-size: 12px; /* Adjust text size to fit the screen */
     }
 }
+
+/* Add this to your main stylesheet (or inline in a <style> tag) */
+.alert {
+    font-weight: bold;
+    border-radius: 0.5rem;
+    padding: 15px;
+    background-color: #d4edda;
+    color: #155724;
+}
+.alert i {
+    margin-right: 10px;
+}

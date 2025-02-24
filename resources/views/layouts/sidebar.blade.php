@@ -25,7 +25,7 @@
                 <li><a class="nav-link text-white" href="{{ route('membre.index') }}"><i class="fa-solid fa-user"></i></i> Membre</a></li>
                 <li><a class="nav-link text-white" href="{{ route('equipe.index') }}"><i class="fas fa-users me-2"></i> Equipe</a></li>
                 <li><a class="nav-link text-white" href="{{ route('materiel.index') }}"><i class="fa-solid fa-toolbox"></i> Materiel</a></li>
-                {{-- <li><a class="nav-link text-white" href="{{ route('terrain') }}"><i class="fas fa-tree me-2"></i> Nature Terrain</a></li> --}}
+                <li><a class="nav-link text-white" href="{{ route('terrain.index') }}"><i class="fas fa-tree me-2"></i> Nature Terrain</a></li>
                 <li><a class="nav-link text-white" href="{{ route('type.index') }}"><i class="fa-solid fa-triangle-exclamation"></i> Type Intervention</a></li>
                 <li><a class="nav-link text-white" href="{{ route('cause.index') }}"><i class="fa-solid fa-question"></i> Cause</a></li>
                 <li><a class="nav-link text-white" href="{{ route('ville.index') }}"><i class="fas fa-map-marker-alt me-2"></i> Ville</a></li>

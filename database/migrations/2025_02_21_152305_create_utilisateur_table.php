@@ -14,7 +14,7 @@ class CreateUtilisateurTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('login');
-            $table->string('pass');
+            $table->string('password');
             $table->string('cin');
             $table->string('telephone');
             $table->string('email');
