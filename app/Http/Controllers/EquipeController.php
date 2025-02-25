@@ -27,8 +27,8 @@ class EquipeController extends Controller
             'designation' => 'required|string|max:255',
             'id_ville' => 'required|string|max:255',
         ]);
-        Equipe::create($data)->with('success','Equipe ajoutée avec succés');
-        return redirect(route('equipe.index'));
+        Equipe::create($data);
+        return redirect(route('equipe.index'))->with('success','Equipe ajoutée avec succés');
     }
     public function edit(Equipe $equipe)
     {

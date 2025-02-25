@@ -21,8 +21,8 @@ class TypeController extends Controller
         $data = $request->validate([
             'designation' => 'required|string|max:255',
         ]);
-        Type::create($data)->with('success','type de fuite ajouté avec succés');
-        return redirect(route('type.index'));
+        Type::create($data);
+        return redirect(route('type.index'))->with('success','type de fuite ajouté avec succés');
     }
     public function edit(Type $type)
     {

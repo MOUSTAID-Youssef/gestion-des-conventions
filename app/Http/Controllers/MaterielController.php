@@ -21,8 +21,8 @@ class MaterielController extends Controller
         $data = $request->validate([
             'designation' => 'required|string|max:255',
         ]);
-        Materiel::create($data)->with('success','Matériel ajouté avec succés');
-        return redirect(route('materiel.index'));
+        Materiel::create($data);
+        return redirect(route('materiel.index'))->with('success','Matériel ajouté avec succés');
     }
     public function edit(Materiel $materiel)
     {
