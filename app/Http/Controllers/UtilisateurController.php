@@ -37,7 +37,7 @@ class UtilisateurController extends Controller
 
         $data['password'] = bcrypt($data['password']);
         Utilisateur::create($data);
-        return redirect(route('utilisateur.index'))->with('success','utilisateur ajouté avec succés');
+        return redirect(route('utilisateur.index'))->with('success', 'utilisateur ajouté avec succés');
     }
     public function edit(Utilisateur $utilisateur)
     {
@@ -49,7 +49,7 @@ class UtilisateurController extends Controller
         $data = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'login' => 'required|string|max:255|unique:utilisateur,login,' . $utilisateur->id, // Ignore l'unicité pour cet utilisateur
+            'login' => 'required|string|max:255|unique:utilisateur,login,' . $utilisateur->id,
             'cin' => 'nullable|string|max:20',
             'telephone' => 'nullable|string|max:15',
             'email' => 'nullable|email|max:255',
@@ -59,10 +59,15 @@ class UtilisateurController extends Controller
             'etat' => 'required|string|in:actif,inactif',
         ]);
         $utilisateur->update($data);
-        return redirect(route('utilisateur.index'))->with('success','utilisateur modifié avec succés');
+        return redirect(route('utilisateur.index'))->with('success', 'utilisateur modifié avec succés');
     }
-    public function delete(Utilisateur $utilisateur){
+    public function delete(Utilisateur $utilisateur)
+    {
         $utilisateur->delete();
-        return redirect(route('utilisateur.index'))->with('success','utilisateur supprimé avec succés');
+        return redirect(route('utilisateur.index'))->with('success', 'utilisateur supprimé avec succés');
+    }
+    public function show(Utilisateur $utilisateur)
+    {
+        return view('utilisateur.show', ['utilisateur' => $utilisateur]);
     }
 }

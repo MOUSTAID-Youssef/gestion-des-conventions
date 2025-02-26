@@ -16,7 +16,6 @@ class CreateInterventionTable extends Migration
             $table->date('date_intervention');
             $table->foreignId('id_ville')->constrained('ville');
             $table->string('adresse');
-            $table->string('icon');
             $table->string('photo');
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);

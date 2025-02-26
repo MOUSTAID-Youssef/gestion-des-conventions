@@ -22,11 +22,11 @@ class CauseController extends Controller
             'designation' => 'required|string|max:255',
         ]);
         Cause::create($data);
-        return redirect(route('cause.index'))->with('success',"cause d'intervention ajoutée avec succés");
+        return redirect(route('cause.index'))->with('success', "cause d'intervention ajoutée avec succés");
     }
     public function edit(Cause $cause)
     {
-        return view('cause.edit',['cause'=>$cause]);
+        return view('cause.edit', ['cause' => $cause]);
     }
     public function update(Cause $cause, Request $request)
     {
@@ -34,11 +34,11 @@ class CauseController extends Controller
             'designation' => 'required|string|max:255',
         ]);
         $cause->update($data);
-        return redirect(route('cause.index'))->with('success',"cause d'intervention modifiée avec succés");
+        return redirect(route('cause.index'))->with('success', "cause d'intervention modifiée avec succés");
     }
     public function delete(Cause $cause)
     {
         $cause->delete();
-        return redirect(route('cause.index'))->with('success',"cause d'intervention supprimée avec succés");
+        return redirect(route('cause.index'))->with('success', "cause d'intervention supprimée avec succés");
     }
 }

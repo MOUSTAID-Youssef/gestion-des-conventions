@@ -34,11 +34,11 @@ class TerrainController extends Controller
             'designation' => 'required|string|max:255',
         ]);
         $terrain->update($data);
-        return redirect(route('terrain.index'))->with('success', 'terrain modifié avec succés');
+        return redirect(route('terrain.index'))->with('success', 'nature de terrain modifié avec succés');
     }
     public function delete(Terrain $terrain)
     {
         $terrain->delete();
-        return redirect(route('terrain.index'))->with('success', 'terrain supprimé avec succés');
+        return redirect(route('terrain.index'))->with('success', 'nature de terrain supprimé avec succés');
     }
 }

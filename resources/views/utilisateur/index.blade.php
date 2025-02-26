@@ -42,7 +42,8 @@
                         <td>{{ $utilisateur->privilege }}</td>
                         <td>{{ $utilisateur->ville ? $utilisateur->ville->nom : '' }}</td>
                         <td>{{ $utilisateur->etat }}</td>
-                        <td><button class="btn btn-info"><i class="fas fa-eye"></i></button></td>
+                        <td><a href="{{ route('utilisateur.show', ['utilisateur' => $utilisateur]) }}"
+                                class="btn btn-info"><i class="fas fa-eye"></i></a></td>
                         <td><a href="{{ route('utilisateur.edit', ['utilisateur' => $utilisateur]) }}"><button
                                     class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
                         <td>
@@ -55,7 +56,6 @@
                                 </button>
                             </form>
                         </td>
-
                     </tr>
                 @endforeach
             </tbody>

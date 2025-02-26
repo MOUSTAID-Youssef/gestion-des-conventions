@@ -19,6 +19,7 @@ Route::post('/utilisateur', [UtilisateurController::class, 'store'])->name('util
 Route::get('/utilisateur/{utilisateur}/edit', [UtilisateurController::class, 'edit'])->name('utilisateur.edit');
 Route::put('/utilisateur/{utilisateur}/update', [UtilisateurController::class, 'update'])->name('utilisateur.update');
 Route::delete('/utilisateur/{utilisateur}/delete', [UtilisateurController::class, 'delete'])->name('utilisateur.delete');
+Route::get('/utilisateur/{utilisateur}', [UtilisateurController::class, 'show'])->name('utilisateur.show');
 
 Route::get('/membre', [MembreController::class, 'index'])->name('membre.index');
 Route::get('/membre/create', [MembreController::class, 'create'])->name('membre.create');
@@ -33,6 +34,13 @@ Route::post('/equipe', [EquipeController::class, 'store'])->name('equipe.store')
 Route::get('/equipe/{equipe}/edit', [EquipeController::class, 'edit'])->name('equipe.edit');
 Route::put('/equipe/{equipe}/update', [EquipeController::class, 'update'])->name('equipe.update');
 Route::delete('/equipe/{equipe}/delete', [EquipeController::class, 'delete'])->name('equipe.delete');
+Route::get('/equipe/{equipe}', [EquipeController::class, 'show'])->name('equipe.show');
+Route::post('equipe/{equipe}/attacherMembre', [EquipeController::class, 'attacherMembre'])->name('equipe.attacherMembre');
+Route::delete('equipe/{equipe}/membre/{membre}', [EquipeController::class, 'detacherMembre'])->name('equipe.detacherMembre');
+
+
+
+
 
 Route::get('/materiel', [MaterielController::class, 'index'])->name('materiel.index');
 Route::get('/materiel/create', [MaterielController::class, 'create'])->name('materiel.create');

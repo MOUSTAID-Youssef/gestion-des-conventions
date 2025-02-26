@@ -1,4 +1,4 @@
-/* Make the Navbar Sticky */
+
 .navbar {
     position: sticky;  /* This makes the navbar sticky */
     top: 0;  /* Sticks the navbar to the top */
@@ -155,88 +155,6 @@
     margin-right: 10px;
 }
 
-/* ---------------------------------------- */
+/*gooooooooooooooooooood
 
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-/* Body Style */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Table Container to enable scrolling */
-.table-container {
-    overflow-x: auto;   /* Allows horizontal scrolling */
-    margin: 20px 0;
-    padding: 0 10px;     /* Adds some space around the table */
-    max-width: 100%;     /* Prevents the table from overflowing beyond the viewport */
-}
-
-/* Table Style */
-.table {
-    width: 100%;         /* Make the table take full width of its container */
-    min-width: 800px;    /* Minimum width to make sure horizontal scrolling is triggered */
-    border-collapse: collapse;  /* Ensures borders between table cells collapse into one */
-    table-layout: auto;   /* Allows the table to adjust based on content */
-}
-
-/* Table Header */
-.table th {
-    background-color: #003366;   /* Dark Blue */
-    color: #fff;                 /* White text for contrast */
-    padding: 12px;               /* Adds space inside header */
-    text-align: left;            /* Left-aligns the header text */
-    font-size: 16px;             /* Larger font for headers */
-    font-weight: bold;
-    border: 1px solid #ddd;     /* Light border around header cells */
-}
-
-/* Table Cells */
-.table td {
-    background-color: #fff;      /* White background for data cells */
-    color: #333;                 /* Dark text color */
-    padding: 12px;               /* Adds space inside cells */
-    text-align: left;            /* Left-aligns the text */
-    font-size: 14px;             /* Standard font size */
-    border: 1px solid #ddd;     /* Light border around data cells */
-    word-wrap: break-word;       /* Ensures long words break and wrap */
-}
-
-/* Prevent text from overflowing */
-.table td, .table th {
-    overflow: hidden;           /* Prevents overflowing content */
-    text-overflow: ellipsis;    /* Adds ellipsis for overflowed text */
-    word-break: break-word;     /* Breaks long words into the next line */
-}
-
-/* Alternate Row Colors */
-.table tr:nth-child(even) td {
-    background-color: #f9f9f9;  /* Light gray for even rows */
-}
-
-/* Hover Effect on Rows */
-.table tr:hover td {
-    background-color: #e1e1e1;  /* Darker gray when hovered */
-}
-
-/* Scrollbar Style */
-.table-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-.table-container::-webkit-scrollbar-thumb {
-    background-color: #00BFFF;  /* Light blue scrollbar thumb */
-    border-radius: 4px;
-}
-
-.table-container::-webkit-scrollbar-track {
-    background-color: #f1f1f1;  /* Light gray track */
-    border-radius: 4px;
-}

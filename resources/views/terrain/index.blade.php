@@ -4,9 +4,9 @@
     <div style="margin-left: 18px;text-align:center">
 
         <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 15px;">
-            <h1 class="me-3">Liste des terrains</h1>
+            <h1 class="me-3">Liste des natures de terrains</h1>
             <a href="{{ route('terrain.create') }}" class="btn btn-success">
-                <i class="fa-solid fa-plus"></i> Ajouter terrain
+                <i class="fa-solid fa-plus"></i> Ajouter nature de terrain
             </a>
         </div>
         @if (session()->has('success'))

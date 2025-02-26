@@ -20,4 +20,9 @@ class Equipe extends Model
         return $this->belongsTo(Ville::class, 'id_ville');
     }
     public $timestamps = true;
+    public function membres()
+    {
+        return $this->belongsToMany(Membre::class, 'membre_equipe', 'id_equipe', 'id_membre');
+    }
+    
 }
