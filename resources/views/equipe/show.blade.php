@@ -32,7 +32,8 @@
                 </button>
             </div>
         </form>
-        <table class="table table-striped table-fixed">
+        <div class="table-container">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -71,4 +72,5 @@
             </tbody>
         </table>
     </div>
+</div>
 @endsection

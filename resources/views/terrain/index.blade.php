@@ -16,7 +16,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <table class="table table-striped table-fixed">
+        @if ($terrains->isEmpty())
+        <p class="alert alert-warning" style="background-color: #f8d7da; color: #721c24;">La liste est vide</p>
+    @else
+        <div class="table-container">
+        <table class="table table-striped ">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -45,5 +49,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div>
+    </div>
+    @endif
+</div>
         @endsection

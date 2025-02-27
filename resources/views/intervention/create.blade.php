@@ -126,17 +126,15 @@
         let marker;
 
         function initMap() {
-            const lat = parseFloat(document.getElementById('latitude').value) || null;
-            const lng = parseFloat(document.getElementById('longitude').value) || null;
-
-
+            const lat = parseFloat(document.getElementById('latitude').value) || 33.5731;
+            const lng = parseFloat(document.getElementById('longitude').value) || -7.5898;
 
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {
                     lat: lat,
                     lng: lng
                 },
-                zoom: 12
+                zoom: 10
             });
 
             marker = new google.maps.Marker({
@@ -144,25 +142,24 @@
                     lat: lat,
                     lng: lng
                 },
-                map: map,
+                map: null, // Hide marker initially
                 draggable: true
             });
 
-            // Mettre à jour les champs lors du déplacement du marqueur
+            // Update fields when the marker is dragged
             google.maps.event.addListener(marker, 'dragend', function(event) {
                 document.getElementById('latitude').value = event.latLng.lat();
                 document.getElementById('longitude').value = event.latLng.lng();
             });
 
-            // Ajouter un événement de clic sur la carte
+            // Show and place the marker when the user clicks on the map
             google.maps.event.addListener(map, 'click', function(event) {
                 let clickedLat = event.latLng.lat();
                 let clickedLng = event.latLng.lng();
 
-                // Mettre à jour le marqueur existant
                 marker.setPosition(event.latLng);
+                marker.setMap(map); // Show marker when clicking on the map
 
-                // Remplir les champs latitude et longitude
                 document.getElementById('latitude').value = clickedLat;
                 document.getElementById('longitude').value = clickedLng;
             });
