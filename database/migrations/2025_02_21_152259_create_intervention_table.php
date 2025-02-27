@@ -12,11 +12,11 @@ class CreateInterventionTable extends Migration
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('intervention', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->string('libelle')->nullable()->default(null);
             $table->date('date_intervention');
             $table->foreignId('id_ville')->constrained('ville');
             $table->string('adresse');
-            $table->string('photo');
+            $table->string('photo')->nullable()->default(null);
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
             $table->foreignId('id_equipe')->constrained('equipe');

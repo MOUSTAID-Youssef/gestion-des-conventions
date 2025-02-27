@@ -25,16 +25,15 @@
             <div class="row mb-2">
                 <label for="raison_sociale" class="col-md-4 col-form-label">Raison Sociale *</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="raison_sociale" name="raison_sociale" value="{{ $informations->raison_sociale }}"
-                        required>
+                    <input type="text" class="form-control" id="raison_sociale" name="raison_sociale"
+                        value="{{ $informations->raison_sociale }}" required>
                 </div>
             </div>
-            
+
             <div class="row mb-2">
                 <label for="adresse" class="col-md-4 col-form-label">Adresse*</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="adresse" name="adresse"
-                        value="{{ $informations->adresse }}">
+                    <textarea type="text" class="form-control" id="adresse" name="adresse">{{ $informations->adresse }}</textarea>
                 </div>
             </div>
 
