@@ -111,7 +111,8 @@
 
 #main-content {
     transition: 0.3s ease;
-    margin-left: 220px;
+    margin-left: 240px;  /* Adjust according to sidebar width */
+    width: calc(100% - 240px); /* Make sure the main content fills the remaining space */
 }
 
 @media (max-width: 768px) {
@@ -120,6 +121,7 @@
     }
     #main-content {
         margin-left: 0;
+        width: 100%;
     }
 }
 
@@ -226,4 +228,9 @@ body {
 .table-container::-webkit-scrollbar-track {
     background-color: #f1f1f1;  /* Light gray track */
     border-radius: 4px;
+}
+
+#map {
+    height: 100vh; /* Full height of the viewport */
+    width: 100%;   /* Full width of the container */
 }

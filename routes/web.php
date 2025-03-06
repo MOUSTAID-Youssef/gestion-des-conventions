@@ -90,20 +90,27 @@ Route::get('/intervention/{intervention}/edit', [InterventionController::class, 
 Route::put('/intervention/{intervention}/update', [InterventionController::class, 'update'])->name('intervention.update');
 Route::delete('/intervention/{intervention}/delete', [InterventionController::class, 'delete'])->name('intervention.delete');
 
+use App\Http\Controllers\ObservationController;
+
+Route::get('observation/{id}', [ObservationController::class, 'show'])->name('observation.show');
+
+
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login');
 
 
 use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/map', [InterventionController::class, 'showMap'])->name('map');
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

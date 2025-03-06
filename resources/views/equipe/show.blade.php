@@ -26,51 +26,56 @@
                             <option value="{{ $membre->id }}">{{ $membre->nom }} {{ $membre->prenom }}</option>
                         @endif
                     @endforeach
-                </select>   
+                </select>
                 <button type="submit" class="btn btn-success mt-2">
                     attacher à l'équipe
                 </button>
             </div>
         </form>
+        @if ($membres->isEmpty())
+        <p class="alert alert-warning" style="background-color: #f8d7da; color: #721c24;">Aucune Membre dans cette équipe</p>
+    @else
         <div class="table-container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>CIN</th>
-                    <th>Télephone</th>
-                    <th>Email</th>
-                    <th>Adresse</th>
-                    <th>ville</th>
-                    <th>statut</th>
-                    <th>Détacher</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($membres as $membre)
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>{{ $membre->nom }}</td>
-                        <td>{{ $membre->prenom }}</td>
-                        <td>{{ $membre->cin }}</td>
-                        <td>{{ $membre->telephone }}</td>
-                        <td>{{ $membre->email }}</td>
-                        <td>{{ $membre->adresse }}</td>
-                        <td>{{ $membre->ville->nom }}</td>
-                        <td>{{ $membre->statut }}</td>
-                        <td>
-                            <form action="{{ route('equipe.detacherMembre', [$equipe->id, $membre->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    détacher
-                                </button>
-                            </form>
-                        </td>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>CIN</th>
+                        <th>Télephone</th>
+                        <th>Email</th>
+                        <th>Adresse</th>
+                        <th>ville</th>
+                        <th>statut</th>
+                        <th>Détacher</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($membres as $membre)
+                        <tr>
+                            <td>{{ $membre->nom }}</td>
+                            <td>{{ $membre->prenom }}</td>
+                            <td>{{ $membre->cin }}</td>
+                            <td>{{ $membre->telephone }}</td>
+                            <td>{{ $membre->email }}</td>
+                            <td>{{ $membre->adresse }}</td>
+                            <td>{{ $membre->ville->nom }}</td>
+                            <td>{{ $membre->statut }}</td>
+                            <td>
+                                <form action="{{ route('equipe.detacherMembre', [$equipe->id, $membre->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        détacher
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @endif
     </div>
-</div>
 @endsection

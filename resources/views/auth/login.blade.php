@@ -76,7 +76,7 @@
 
 <div class="card shadow-lg p-4" style="width: 400px; border-radius: 12px; background: rgba(0, 40, 85, 0.8); color: white;">
     <h3 class="text-center fw-bold mb-3">Gestion des interventions de la société WATEC</h3>
-    <form method="POST" action="">
+    <form method="POST" action="{{route('login')}}">
         @csrf
         <div class="mb-3">
             <label for="email" class="form-label">Login</label>

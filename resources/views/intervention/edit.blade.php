@@ -22,15 +22,16 @@
 
         <div id="map" style="height: 400px; width: 100%; margin-bottom:15px"></div>
 
-        <form action="{{ route('intervention.update', ['intervention' => $intervention]) }}" method="POST">
+        <form action="{{ route('intervention.update', ['intervention' => $intervention]) }}" method="POST"
+            enctype="multipart/form-data">>
             @csrf
             @method('PUT')
 
             <div class="row mb-2">
                 <label for="id_utilisateur" class="col-md-4 col-form-label">id_utilisateur temp</label>
                 <div class="col-md-8">
-                    <input type="number" class="form-control" id="id_utilisateur" name="id_utilisateur" value="{{ $intervention->id_utilisateur }}" step="1"
-                        required>
+                    <input type="number" class="form-control" id="id_utilisateur" name="id_utilisateur"
+                        value="{{ $intervention->id_utilisateur }}" step="1" required>
                 </div>
             </div>
             <div class="row mb-2">
@@ -66,7 +67,7 @@
                     </select>
                 </div>
             </div>
-            
+
 
             <div class="row mb-2">
                 <label for="adresse" class="col-md-4 col-form-label">Adresse *</label>
@@ -88,7 +89,8 @@
                 <div class="col-md-8">
                     <select class="form-select" name="id_type_intervention" id="type" required>
                         @foreach ($types as $type)
-                            <option value="{{ $type->id }}" @selected($type->id == $intervention->id_type_intervention)>{{ $type->designation }}</option>
+                            <option value="{{ $type->id }}" @selected($type->id == $intervention->id_type_intervention)>{{ $type->designation }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -99,7 +101,8 @@
                 <div class="col-md-8">
                     <select class="form-select" name="id_cause" id="cause" required>
                         @foreach ($causes as $cause)
-                            <option value="{{ $cause->id }}" @selected($cause->id == $intervention->id_cause)>{{ $cause->designation }}</option>
+                            <option value="{{ $cause->id }}" @selected($cause->id == $intervention->id_cause)>{{ $cause->designation }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -110,11 +113,28 @@
                 <div class="col-md-8">
                     <select class="form-select" name="id_equipe" id="equipe" required>
                         @foreach ($equipes as $equipe)
-                            <option value="{{ $equipe->id }}" @selected($equipe->id == $intervention->id_equipe)>{{ $equipe->designation }}</option>
+                            <option value="{{ $equipe->id }}" @selected($equipe->id == $intervention->id_equipe)>{{ $equipe->designation }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
             </div>
+
+            <!-- Photo upload section -->
+            <div class="row mb-2">
+                <label for="photo" class="col-md-4 col-form-label">Photo</label>
+                <div class="col-md-8">
+                    <!-- Display the current photo if exists -->
+                    @if ($intervention->photo)
+                        <div>
+                            <img src="{{ asset('storage/' . $intervention->photo) }}" alt="Current Photo" width="150"
+                                height="150">
+                        </div>
+                    @endif
+                    <input type="file" class="form-control" id="photo" name="photo">
+                </div>
+            </div>
+
 
             <div class="d-flex justify-content-between mt-3">
                 <button type="reset" class="btn btn-secondary w-48">
@@ -174,6 +194,6 @@
         }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9evIXL-e2V5dnRYSN923LL2b_Bw_rBL8&callback=initMap" async
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async
         defer></script>
 @endsection

@@ -50,5 +50,10 @@ class Intervention extends Model
     {
         return $this->belongsTo(Utilisateur::class, 'id_utilisateur');
     }
+    public function observation()
+    {
+        return $this->hasMany(Observation::class, 'id_intervention');
+    }
+    
     public $timestamps = true;
 }

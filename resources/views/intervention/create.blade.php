@@ -22,7 +22,7 @@
         <!-- Carte Google Maps -->
         <div id="map" style="height: 400px; width: 100%; margin-bottom:15px"></div>
 
-        <form action="{{ route('intervention.store') }}" method="POST">
+        <form action="{{ route('intervention.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row mb-2">
@@ -110,6 +110,13 @@
                 </div>
             </div>
 
+            <div class="row mb-2">
+                <label for="photo" class="col-md-4 col-form-label">Photo</label>
+                <div class="col-md-8">
+                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                </div>
+            </div>
+
             <div class="d-flex justify-content-between mt-3">
                 <button type="reset" class="btn btn-secondary w-48">
                     <i class="fas fa-undo"></i> Réinitialiser
@@ -166,6 +173,6 @@
         }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9evIXL-e2V5dnRYSN923LL2b_Bw_rBL8&callback=initMap" async
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async
         defer></script>
 @endsection
