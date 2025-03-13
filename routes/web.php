@@ -21,6 +21,11 @@ Route::put('/utilisateur/{utilisateur}/update', [UtilisateurController::class, '
 Route::delete('/utilisateur/{utilisateur}/delete', [UtilisateurController::class, 'delete'])->name('utilisateur.delete');
 Route::get('/utilisateur/{utilisateur}', [UtilisateurController::class, 'show'])->name('utilisateur.show');
 
+Route::get('/', [UtilisateurController::class, 'showLoginForm'])->name('utilisateur.login');
+Route::post('', [UtilisateurController::class, 'login'])->name('utilisateur.login.submit');
+Route::post('/logout', [UtilisateurController::class, 'logout'])->name('utilisateur.logout');
+
+
 Route::get('/membre', [MembreController::class, 'index'])->name('membre.index');
 Route::get('/membre/create', [MembreController::class, 'create'])->name('membre.create');
 Route::post('/membre', [MembreController::class, 'store'])->name('membre.store');
@@ -37,8 +42,6 @@ Route::delete('/equipe/{equipe}/delete', [EquipeController::class, 'delete'])->n
 Route::get('/equipe/{equipe}', [EquipeController::class, 'show'])->name('equipe.show');
 Route::post('equipe/{equipe}/attacherMembre', [EquipeController::class, 'attacherMembre'])->name('equipe.attacherMembre');
 Route::delete('equipe/{equipe}/membre/{membre}', [EquipeController::class, 'detacherMembre'])->name('equipe.detacherMembre');
-
-
 
 
 
@@ -95,27 +98,8 @@ use App\Http\Controllers\ObservationController;
 Route::get('observation/{id}', [ObservationController::class, 'show'])->name('observation.show');
 
 
-Route::get('/', function () {
-    return view('auth.login');
-})->name('login');
-
-
-use App\Http\Controllers\ProfileController;
-
 
 
 
 Route::get('/map', [InterventionController::class, 'showMap'])->name('map');
 
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';

@@ -11,8 +11,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    <form action="{{ route('utilisateur.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="nav-link text-white" style="background: none; border: none;">
+                            <i class="fas fa-sign-out-alt"></i> Déconnexion
+                        </button>
+                    </form>
                 </li>
+                
             </ul>
         </div>
     </div>

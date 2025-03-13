@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Utilisateur;
 use App\Models\Ville;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UtilisateurController extends Controller
 {
@@ -35,7 +37,7 @@ class UtilisateurController extends Controller
             'etat' => 'required|string|in:actif,inactif',
         ]);
 
-        $data['password'] = bcrypt($data['password']);
+        $data['password'] = Hash::make($data['password']);
         Utilisateur::create($data);
         return redirect(route('utilisateur.index'))->with('success', 'utilisateur ajouté avec succés');
     }
@@ -69,5 +71,29 @@ class UtilisateurController extends Controller
     public function show(Utilisateur $utilisateur)
     {
         return view('utilisateur.show', ['utilisateur' => $utilisateur]);
+    }
+    // Méthode de connexion
+    public function login(Request $request)
+    {
+        $data = $request->validate([
+            'login' => 'required|string',
+            'password' => 'required|string',
+        ]);
+        if (Auth::attempt(['login' => $data['login'], 'password' => $data['password']])) {
+            return redirect()->route('utilisateur.index')->with('success', 'Connexion réussie');
+        } else {
+            return back()->withErrors(['login' => 'Le login ou le mot de passe est incorrect.']);
+        }
+    }
+
+    // Méthode de déconnexion
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('utilisateur.login')->with('success', 'Déconnexion réussie');
+    }
+    public function showLoginForm()
+    {
+        return view('auth.login');  // This will load the login.blade.php view
     }
 }
