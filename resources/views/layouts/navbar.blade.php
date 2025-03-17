@@ -6,9 +6,17 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#"><i class="fas fa-user"></i>Bienvenue: user</a>
+                @auth
+                <li class="nav-item d-flex align-items-center">
+                    <a class="nav-link text-white fw-bold px-3 py-2 d-flex align-items-center" 
+                       style="border-radius: 8px; background: rgba(255, 255, 255, 0.2);">
+                        <i class="fas fa-user me-2"></i> 
+                        <span class="text-warning">Bienvenue,</span> 
+                        <span class="ms-2">{{ Auth::user()->nom }}</span>
+                    </a>
                 </li>
+                
+                @endauth
 
                 <li class="nav-item">
                     <form action="{{ route('utilisateur.logout') }}" method="POST">
@@ -18,7 +26,7 @@
                         </button>
                     </form>
                 </li>
-                
+
             </ul>
         </div>
     </div>

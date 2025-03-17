@@ -3,6 +3,11 @@
 @section('content')
     <div style="margin-left:10px">
         <h2>Localisation des interventions</h2>
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <div id="map" style="height: 500px; width: 100%;"></div>
 
         <script>
@@ -68,4 +73,4 @@
         <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async defer>
         </script>
     </div>
-    @endsection
+@endsection

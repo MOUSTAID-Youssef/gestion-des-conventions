@@ -80,9 +80,15 @@ class UtilisateurController extends Controller
             'password' => 'required|string',
         ]);
         if (Auth::attempt(['login' => $data['login'], 'password' => $data['password']])) {
-            return redirect()->route('utilisateur.index')->with('success', 'Connexion réussie');
+            $user = Auth::user();
+            if ($user->etat === 'inactif') {
+                // Logout the user
+                Auth::logout();
+                return redirect()->route('login')->withErrors(['error' => "Votre compte est désactivé par l'admin."]);
+            }
+            return redirect()->route('map')->with('success', 'Connexion réussie');
         } else {
-            return back()->withErrors(['login' => 'Le login ou le mot de passe est incorrect.']);
+            return back()->withErrors(['error' => 'Le login ou le mot de passe est incorrect.']);
         }
     }
 
@@ -90,10 +96,14 @@ class UtilisateurController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('utilisateur.login')->with('success', 'Déconnexion réussie');
+        return redirect('/')->with('success', 'Déconnexion réussie');
     }
     public function showLoginForm()
     {
-        return view('auth.login');  // This will load the login.blade.php view
+        if (Auth::check()) {
+            return redirect()->route('map'); // Or wherever you want to redirect authenticated users
+        }
+        return view('auth.login')->with('error', 'You must be logged in to access this page.');
     }
+    
 }

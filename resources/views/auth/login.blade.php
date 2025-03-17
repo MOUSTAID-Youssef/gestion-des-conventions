@@ -81,7 +81,7 @@
     @endif
 
     <!-- Error Message Alert (Positioned outside the form) -->
-    @error('login')
+    @error('error')
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ $message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -95,7 +95,8 @@
             @csrf
             <div class="mb-3">
                 <label for="login" class="form-label">Login</label>
-                <input type="text" name="login" id="login" class="form-control" value="{{ old('login') }}" required autofocus>
+                <input type="text" name="login" id="login" class="form-control" value="{{ old('login') }}"
+                    required autofocus>
             </div>
 
             <div class="mb-3">
