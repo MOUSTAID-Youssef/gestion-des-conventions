@@ -11,7 +11,10 @@ class Terrain extends Model
     protected $table = 'terrain';
     protected $fillable = [
         'designation',
-        'updated_at',
     ];
-    public $timestamps = true;
+    public function interventions()
+    {
+        return $this->belongsToMany(Intervention::class, 'terrain_intervention', 'id_terrain', 'id_intervention')
+                    ->withTimestamps();
+    }
 }

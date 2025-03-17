@@ -11,8 +11,8 @@ class Observation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'observation',
-        'id_intervention', // Foreign key linking to the intervention
+        'id_intervention',
+        'designation',
     ];
 
     public function intervention()

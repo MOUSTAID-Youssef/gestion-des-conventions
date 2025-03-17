@@ -13,7 +13,7 @@ class InterventionController extends Controller
 {
     public function index()
     {
-        $interventions = Intervention::with('ville')->get();
+        $interventions = Intervention::with('ville','utilisateur')->get();
         return view('intervention.index', ['interventions' => $interventions]);
     }
     public function create()
@@ -45,6 +45,7 @@ class InterventionController extends Controller
             'id_type_intervention' => 'required|integer|exists:type_intervention,id',
             'id_utilisateur' => 'nullable|integer|exists:utilisateur,id',
         ]);
+        
         $path = null; // Default to null if no photo is uploaded
         if ($request->hasFile('photo')) {
             // Get the uploaded photo

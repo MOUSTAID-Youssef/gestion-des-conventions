@@ -45,7 +45,11 @@
                             <td>{{ $membre->email }}</td>
                             <td>{{ $membre->adresse }}</td>
                             <td>{{ $membre->ville ? $membre->ville->nom : '' }}</td>
-                            <td>{{ $membre->statut }}</td>
+                            <td>
+                                <span class="{{ $membre->statut === 'chef' ? 'badge bg-primary' : 'badge bg-secondary' }}">
+                                    {{ $membre->statut }}
+                                </span>
+                            </td>
                             <td><a href="{{ route('membre.edit', ['membre' => $membre]) }}"><button
                                         class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
                             <td>

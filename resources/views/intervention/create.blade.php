@@ -27,12 +27,12 @@
             <form action="{{ route('intervention.store') }}" method="POST" enctype="multipart/form-data" style="width: 48%;">
                 @csrf
 
-                <div class="row mb-2">
+                {{-- <div class="row mb-2">
                     <label for="id_utilisateur" class="col-md-4 col-form-label">id_utilisateur temp</label>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" id="id_utilisateur" name="id_utilisateur" step="1" required>
                     </div>
-                </div>
+                </div> --}}
+                <input type="number" class="form-control" id="id_utilisateur" name="id_utilisateur" value="{{ auth()->id() }}" hidden readonly required>
 
                 <div class="row mb-2">
                     <label for="longitude" class="col-md-4 col-form-label">Longitude *</label>

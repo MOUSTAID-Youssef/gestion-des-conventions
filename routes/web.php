@@ -110,4 +110,27 @@ Route::middleware(['auth'])->group(function () {
 
 use App\Http\Controllers\ObservationController;
 
-Route::get('observation/{id}', [ObservationController::class, 'show'])->name('observation.show');
+Route::prefix('intervention/{intervention}')->group(function () {
+    Route::get('/observations', [ObservationController::class, 'index'])->name('observations.index');
+    Route::get('/observations/create', [ObservationController::class, 'create'])->name('observations.create');
+    Route::post('/observations', [ObservationController::class, 'store'])->name('observations.store');
+    Route::get('/observations/{observation}/edit', [ObservationController::class, 'edit'])->name('observations.edit');
+    Route::put('/observations/{observation}', [ObservationController::class, 'update'])->name('observations.update');
+    Route::delete('/observations/{observation}', [ObservationController::class, 'destroy'])->name('observations.destroy');
+});
+
+use App\Http\Controllers\MaterielInterventionController;
+
+Route::prefix('intervention/{intervention}')->group(function () {
+    Route::get('/materiels', [MaterielInterventionController::class, 'index'])->name('materiel_intervention.index');
+    Route::post('/materiels', [MaterielInterventionController::class, 'store'])->name('materiel_intervention.store');
+    Route::delete('/materiels/{materiel}', [MaterielInterventionController::class, 'destroy'])->name('materiel_intervention.destroy');
+});
+
+use App\Http\Controllers\TerrainInterventionController;
+
+Route::prefix('intervention/{intervention}')->group(function () {
+    Route::get('/terrains', [TerrainInterventionController::class, 'index'])->name('terrain_intervention.index');
+    Route::post('/terrains', [TerrainInterventionController::class, 'store'])->name('terrain_intervention.store');
+    Route::delete('/terrains/{terrain}', [TerrainInterventionController::class, 'destroy'])->name('terrain_intervention.destroy');
+});

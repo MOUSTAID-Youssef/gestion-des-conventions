@@ -11,7 +11,10 @@ class Materiel extends Model
     protected $table = 'materiel';
     protected $fillable = [
         'designation',
-        'updated_at',
     ];
-    public $timestamps = true;
+    public function interventions()
+    {
+        return $this->belongsToMany(Intervention::class, 'materiel_intervention', 'id_materiel', 'id_intervention')
+                    ->withTimestamps();
+    }
 }

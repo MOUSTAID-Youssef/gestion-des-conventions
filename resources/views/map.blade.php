@@ -37,13 +37,14 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Intervention <span style="color: #007bff;">N°${intervention.id}</span> </h5>
+                            <p class="card-text"><strong>Utilisateur:</strong> ${intervention.utilisateur ? intervention.utilisateur.login : ''}</p>
                             <p class="card-text"><strong>Libellé:</strong> ${intervention.libelle ? intervention.libelle : 'Sans Libellé'}</p>
                             <p class="card-text"><strong>Equipe:</strong> ${intervention.equipe.designation}</p>
                             <p class="card-text"><strong>Type:</strong> ${intervention.type.designation}</p>
                             <p class="card-text"><strong>Cause:</strong> ${intervention.cause.designation}</p>
                             <p class="card-text"><strong>Adresse:</strong> ${intervention.adresse}</p>
                             <p class="card-text"><strong>Date:</strong> ${intervention.date_intervention}</p>
-                            <p class="card-text"><strong>Ville:</strong> ${intervention.ville ? intervention.ville.nom : 'Non spécifiée'}</p>
+                            <p class="card-text"><strong>Ville:</strong> ${intervention.ville ? intervention.ville.nom : ''}</p>
                             ${intervention.photo ? `<img src="/storage/${intervention.photo}" style="width: 100px; height: 100px;"/>` : ''}
                         </div>
                     </div>

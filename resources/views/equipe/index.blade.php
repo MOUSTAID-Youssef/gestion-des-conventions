@@ -39,8 +39,8 @@
                         <td>{{ $equipe->ville ? $equipe->ville->nom : 'N/A' }}</td>
                         <td><a href="{{ route('equipe.show', ['equipe' => $equipe]) }}"
                             class="btn btn-info"><i class="fas fa-eye"></i></a></td>
-                        <td><a href="{{ route('equipe.edit', ['equipe' => $equipe]) }}"><button class="btn btn-warning"><i
-                                        class="fas fa-edit"></i></button></a></td>
+                        <td><a href="{{ route('equipe.edit', ['equipe' => $equipe]) }}"><button class="btn btn-warning">
+                            <i class="fas fa-edit"></i></button></a></td>
                         <td>
                             <form action="{{ route('equipe.delete', ['equipe' => $equipe]) }}" method="POST">
                                 @csrf

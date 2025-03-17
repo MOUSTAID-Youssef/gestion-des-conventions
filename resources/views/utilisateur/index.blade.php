@@ -17,53 +17,62 @@
             </div>
         @endif
         @if ($utilisateurs->isEmpty())
-        <p class="alert alert-warning" style="background-color: #f8d7da; color: #721c24;">La liste est vide</p>
-    @else
-        <div class="table-container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Login</th>
-                    <th>Privilège</th>
-                    <th>Ville</th>
-                    <th>Etat</th>
-                    <th>Consulter</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($utilisateurs as $utilisateur)
-                    <tr>
-                        <td>{{ $utilisateur->id }}</td>
-                        <td>{{ $utilisateur->nom }}</td>
-                        <td>{{ $utilisateur->prenom }}</td>
-                        <td>{{ $utilisateur->login }}</td>
-                        <td>{{ $utilisateur->privilege }}</td>
-                        <td>{{ $utilisateur->ville ? $utilisateur->ville->nom : '' }}</td>
-                        <td>{{ $utilisateur->etat }}</td>
-                        <td><a href="{{ route('utilisateur.show', ['utilisateur' => $utilisateur]) }}"
-                                class="btn btn-info"><i class="fas fa-eye"></i></a></td>
-                        <td><a href="{{ route('utilisateur.edit', ['utilisateur' => $utilisateur]) }}"><button
-                                    class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
-                        <td>
-                            <form action="{{ route('utilisateur.delete', ['utilisateur' => $utilisateur]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            <p class="alert alert-warning" style="background-color: #f8d7da; color: #721c24;">La liste est vide</p>
+        @else
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Login</th>
+                            <th>Privilège</th>
+                            <th>Ville</th>
+                            <th>Etat</th>
+                            <th>Consulter</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($utilisateurs as $utilisateur)
+                            <tr>
+                                <td>{{ $utilisateur->id }}</td>
+                                <td>{{ $utilisateur->nom }}</td>
+                                <td>{{ $utilisateur->prenom }}</td>
+                                <td>{{ $utilisateur->login }}</td>
+                                <td>
+                                    <span
+                                        class="badge {{ $utilisateur->privilege == 'admin' ? 'bg-primary' : 'bg-secondary' }}">
+                                        {{ ucfirst($utilisateur->privilege) }}
+                                    </span>
+                                </td>
+                                <td>{{ $utilisateur->ville ? $utilisateur->ville->nom : '' }}</td>
+                                <td>
+                                    <span class="badge {{ $utilisateur->etat == 'actif' ? 'bg-success' : 'bg-danger' }}">
+                                        {{ ucfirst($utilisateur->etat) }}
+                                    </span>
+                                </td>
+                                <td><a href="{{ route('utilisateur.show', ['utilisateur' => $utilisateur]) }}"
+                                        class="btn btn-info"><i class="fas fa-eye"></i></a></td>
+                                <td><a href="{{ route('utilisateur.edit', ['utilisateur' => $utilisateur]) }}"><button
+                                            class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
+                                <td>
+                                    <form action="{{ route('utilisateur.delete', ['utilisateur' => $utilisateur]) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </div>
-    @endif
-</div>
 @endsection
