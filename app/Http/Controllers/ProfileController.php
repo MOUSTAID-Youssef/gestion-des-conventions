@@ -2,59 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Models\Utilisateur;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    public function show()
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $utilisateur = Auth::user();
+        return view('profile.index', compact('utilisateur'));
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    // Afficher le formulaire de modification du profil
+    public function edit()
     {
-        $request->user()->fill($request->validated());
+        $utilisateur = Auth::user();
+        return view('profile.edit', compact('utilisateur'));
+    }
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+    // Mettre à jour les informations du profil
+    public function update(Request $request)
+    {
+        $utilisateur = Utilisateur::find(Auth::id());
+
+        $data = $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'login' => 'required|string|max:255|unique:utilisateurs,login,' . $utilisateur->id,
+            'cin' => 'nullable|string|max:20',
+            'telephone' => 'nullable|string|max:15',
+            'email' => 'nullable|email|max:255',
+            'adresse' => 'nullable|string|max:255',
+        ]);
+
+        $utilisateur->update($data);
+
+        return redirect()->route('profile.index')->with('success', 'Profil modifié avec succès.');
+    }
+
+    // Afficher le formulaire de changement de mot de passe
+    public function PasswordForm()
+    {
+        return view('profile.password');
+    }
+
+    // Mettre à jour le mot de passe de l'utilisateur
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required|string',
+            'new_password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $utilisateur = Utilisateur::find(Auth::id());
+
+        if (!Hash::check($request->old_password, $utilisateur->password)) {
+            return back()->withErrors(['old_password' => 'L’ancien mot de passe est incorrect.']);
         }
 
-        $request->user()->save();
+        $utilisateur->password = Hash::make($request->new_password);
+        $utilisateur->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        return redirect()->route('profile.index')->with('success', 'le Mot de passe à été modifié avec succès.');
     }
 }

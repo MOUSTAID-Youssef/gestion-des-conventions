@@ -11,7 +11,7 @@ class CheckAdmin
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check()) {
-            return redirect()->route('redirect');
+            return redirect()->route('login')->with('error', "Vous n'etes pas autorisé à accéder a cette page.");
         }
         $user = Auth::user();
 

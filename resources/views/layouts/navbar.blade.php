@@ -15,6 +15,13 @@
                         <span class="ms-2">{{ Auth::user()->nom }}</span>
                     </a>
                 </li>
+
+                <!-- Mon Profil link with left margin to avoid overlap -->
+                <li class="nav-item ms-3">
+                    <a class="nav-link text-white" href="{{route('profile.index')}}" style="border-radius: 8px; background: rgba(255, 255, 255, 0.2);">
+                        <i class="fas fa-id-badge me-2"></i> Mon Profil
+                    </a>
+                </li>
                 
                 @endauth
 

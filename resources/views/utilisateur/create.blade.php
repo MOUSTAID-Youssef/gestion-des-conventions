@@ -71,7 +71,7 @@
             <div class="row mb-2">
                 <label for="adresse" class="col-md-4 col-form-label">Adresse</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="adresse" name="adresse">
+                    <textarea class="form-control" id="adresse" name="adresse"></textarea>
                 </div>
             </div>
             <div class="row mb-2">

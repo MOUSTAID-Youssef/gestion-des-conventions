@@ -9,7 +9,7 @@ class CreateUtilisateurTable extends Migration
     public function up()
     {
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::create('utilisateur', function (Blueprint $table) {
+        Schema::create('utilisateurs', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
             $table->string('prenom');
@@ -30,7 +30,7 @@ class CreateUtilisateurTable extends Migration
     public function down()
     {
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('utilisateur');
+        Schema::dropIfExists('utilisateurs');
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

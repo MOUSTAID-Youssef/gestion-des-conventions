@@ -8,12 +8,20 @@ use App\Models\Ville;
 use App\Models\Equipe;
 use App\Models\Cause;
 use App\Models\Type;
+use Illuminate\Support\Facades\Auth;
 
 class InterventionController extends Controller
 {
     public function index()
     {
-        $interventions = Intervention::with('ville','utilisateur')->get();
+        $user = Auth::user();
+        if ($user->privilege == 'admin') {
+            $interventions = Intervention::with(['ville', 'utilisateur'])->get();
+        } else {
+            $interventions = Intervention::with(['ville', 'utilisateur'])
+                ->where('id_utilisateur', $user->id)
+                ->get();
+        }
         return view('intervention.index', ['interventions' => $interventions]);
     }
     public function create()
@@ -43,10 +51,10 @@ class InterventionController extends Controller
             'id_equipe' => 'required|integer|exists:equipe,id',
             'id_cause' => 'required|integer|exists:cause,id',
             'id_type_intervention' => 'required|integer|exists:type_intervention,id',
-            'id_utilisateur' => 'nullable|integer|exists:utilisateur,id',
+            'id_utilisateur' => 'nullable|integer|exists:utilisateurs,id',
         ]);
-        
-        $path = null; // Default to null if no photo is uploaded
+
+        $path = 'interventions_photos/default.jpg';
         if ($request->hasFile('photo')) {
             // Get the uploaded photo
             $photo = $request->file('photo');
@@ -60,6 +68,13 @@ class InterventionController extends Controller
     }
     public function edit(Intervention $intervention)
     {
+        $user = Auth::user();
+
+        // Check if the intervention belongs to the authenticated user or if the user is an admin
+        if ($user->privilege !== 'admin' && $intervention->id_utilisateur !== $user->id) {
+            // Redirect with an error message if the user is not authorized
+            return redirect()->route('redirect');
+        }
         $equipes = Equipe::all();
         $villes = Ville::all();
         $causes = Cause::all();
@@ -74,19 +89,23 @@ class InterventionController extends Controller
     }
     public function update(Intervention $intervention, Request $request)
     {
+        $user = Auth::user();
+
+        // Check if the user is either the admin or the user who owns the intervention
+        if ($user->privilege !== 'admin' && $intervention->id_utilisateur !== $user->id) {
+            return redirect()->route('redirect');
+        }
         $data = $request->validate([
             'libelle' => 'nullable|string|max:255',
             'date_intervention' => 'required|date',
             'id_ville' => 'required|integer|exists:ville,id',
             'adresse' => 'required|string|max:255',
-            'icon' => 'nullable|string|max:255',
             'photo' =>  'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'latitude' => 'required|numeric|between:-90,90',
             'longitude' => 'required|numeric|between:-180,180',
             'id_equipe' => 'required|integer|exists:equipe,id',
             'id_cause' => 'required|integer|exists:cause,id',
             'id_type_intervention' => 'required|integer|exists:type_intervention,id',
-            'id_utilisateur' => 'required|integer|exists:utilisateur,id',
         ]);
         // Handle the new photo upload
         if ($request->hasFile('photo')) {
@@ -110,10 +129,20 @@ class InterventionController extends Controller
     {
         return view('intervention.show', ['intervention' => $intervention]);
     }
+
     public function showMap()
     {
-        $interventions = Intervention::with(['type', 'cause', 'equipe', 'ville', 'utilisateur'])
-            ->get();
+        $user = Auth::user(); // Get the logged-in user
+
+        if ($user->privilege == 'admin') {
+            // Admin can see all interventions
+            $interventions = Intervention::with(['type', 'cause', 'equipe', 'ville', 'utilisateur'])->get();
+        } else {
+            // Normal user can only see their own interventions
+            $interventions = Intervention::with(['type', 'cause', 'equipe', 'ville', 'utilisateur'])
+                ->where('id_utilisateur', $user->id)
+                ->get();
+        }
 
         return view('map', compact('interventions'));
     }

@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-success w-100">
-                        <i class="fa-solid fa-plus"></i> Ajouter
+                        <i class="fa-solid fa-plus"></i> attacher
                     </button>
                 </div>
             </div>

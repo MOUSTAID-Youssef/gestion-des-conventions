@@ -23,17 +23,11 @@
         <div id="map" style="height: 400px; width: 100%; margin-bottom:15px"></div>
 
         <form action="{{ route('intervention.update', ['intervention' => $intervention]) }}" method="POST"
-            enctype="multipart/form-data">>
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
-
-            <div class="row mb-2">
-                <label for="id_utilisateur" class="col-md-4 col-form-label">id_utilisateur temp</label>
-                <div class="col-md-8">
-                    <input type="number" class="form-control" id="id_utilisateur" name="id_utilisateur"
-                        value="{{ $intervention->id_utilisateur }}" step="1" required>
-                </div>
-            </div>
+            {{-- <input type="number" class="form-control" id="id_utilisateur" name="id_utilisateur"
+                value="{{ $intervention->id_utilisateur }}" hidden readonly required> --}}
             <div class="row mb-2">
                 <label for="longitude" class="col-md-4 col-form-label">Longitude *</label>
                 <div class="col-md-8">

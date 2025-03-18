@@ -28,7 +28,7 @@ class Ville extends Model
     public $timestamps = true;
 
     // You can define relationships here if needed, e.g., a Ville can have many Utilisateurs
-    public function utilisateurs()
+    public function utilisateur()
     {
         return $this->hasMany(Utilisateur::class, 'id_ville');
     }

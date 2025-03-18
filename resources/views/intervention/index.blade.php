@@ -50,7 +50,7 @@
                                 <td>{{ $intervention->equipe ? $intervention->equipe->designation : '' }}</td>
                                 <td>{{ $intervention->ville ? $intervention->ville->nom : '' }}</td>
                                 <td>{{ $intervention->adresse }}</td>
-                                <td>{{ $intervention->utilisateur ? $intervention->utilisateur->nom : '' }}
+                                <td>{{ $intervention->utilisateur ? $intervention->utilisateur->login : '' }}
                                 </td>
                                 <td>
                                     <a href="{{ route('observations.index', ['intervention' => $intervention->id]) }}"

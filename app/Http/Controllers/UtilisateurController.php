@@ -26,7 +26,7 @@ class UtilisateurController extends Controller
         $data = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'login' => 'required|string|max:255|unique:utilisateur',
+            'login' => 'required|string|max:255|unique:utilisateurs',
             'password' => 'required|string|min:6',
             'cin' => 'nullable|string|max:20',
             'telephone' => 'nullable|string|max:15',
@@ -51,7 +51,7 @@ class UtilisateurController extends Controller
         $data = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'login' => 'required|string|max:255|unique:utilisateur,login,' . $utilisateur->id,
+            'login' => 'required|string|max:255|unique:utilisateurs,login,' . $utilisateur->id,
             'cin' => 'nullable|string|max:20',
             'telephone' => 'nullable|string|max:15',
             'email' => 'nullable|email|max:255',

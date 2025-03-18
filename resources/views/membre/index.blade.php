@@ -23,6 +23,7 @@
             <table class="table table-striped ">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>CIN</th>
@@ -38,6 +39,7 @@
                 <tbody>
                     @foreach ($membres as $membre)
                         <tr>
+                            <td>{{ $membre->id }}</td>
                             <td>{{ $membre->nom }}</td>
                             <td>{{ $membre->prenom }}</td>
                             <td>{{ $membre->cin }}</td>

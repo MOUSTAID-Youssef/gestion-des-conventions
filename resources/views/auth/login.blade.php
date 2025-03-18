@@ -88,6 +88,15 @@
         </div>
     @enderror
 
+    @if (session()->has('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="background-color: #f8d7da; color: #721c24;">
+        <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+
+
     <!-- Login Card -->
     <div class="card shadow-lg p-4">
         <div class="card-header text-center">Gestion des interventions de la société WATEC</div>

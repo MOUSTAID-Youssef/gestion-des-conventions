@@ -46,6 +46,8 @@
                             <p class="card-text"><strong>Date:</strong> ${intervention.date_intervention}</p>
                             <p class="card-text"><strong>Ville:</strong> ${intervention.ville ? intervention.ville.nom : ''}</p>
                             ${intervention.photo ? `<img src="/storage/${intervention.photo}" style="width: 100px; height: 100px;"/>` : ''}
+                            <br>
+                            <a href="/intervention/${intervention.id}/edit" class="btn btn-primary mt-2">Modifier l'intervention</a>
                         </div>
                     </div>
                 `;

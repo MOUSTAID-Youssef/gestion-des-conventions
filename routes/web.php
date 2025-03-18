@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CauseController;
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\InformationsController;
@@ -10,14 +11,18 @@ use App\Http\Controllers\TerrainController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\VilleController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ObservationController;
+use App\Http\Controllers\MaterielInterventionController;
+use App\Http\Controllers\TerrainInterventionController;
 
 // public routes
 Route::get('/', [UtilisateurController::class, 'showLoginForm'])->name('login');
 Route::post('/', [UtilisateurController::class, 'login'])->name('utilisateur.login.submit');
 
-// routes/web.php
+// authentified users routes :
 Route::middleware(['auth'])->group(function () {
+    Route::get('/redirect', function () {return view('auth.redirect');})->name('redirect');
     Route::post('/logout', [UtilisateurController::class, 'logout'])->name('utilisateur.logout');
     Route::get('/logout', [UtilisateurController::class, 'logout'])->name('utilisateur.logout');
 
@@ -27,12 +32,37 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/intervention/{intervention}/edit', [InterventionController::class, 'edit'])->name('intervention.edit');
     Route::put('/intervention/{intervention}/update', [InterventionController::class, 'update'])->name('intervention.update');
     Route::delete('/intervention/{intervention}/delete', [InterventionController::class, 'delete'])->name('intervention.delete');
-
     Route::get('/map', [InterventionController::class, 'showMap'])->name('map');
 
-    Route::get('/redirect', function () {
-        return view('auth.redirect');
-    })->name('redirect');
+    Route::get('/informations', [InformationsController::class, 'index'])->name('informations.index');
+
+
+    // Show profile
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/password', [ProfileController::class, 'PasswordForm'])->name('password.edit');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('password.update');
+
+
+    Route::prefix('intervention/{intervention}')->group(function () {
+        Route::get('/observations', [ObservationController::class, 'index'])->name('observations.index');
+        Route::get('/observations/create', [ObservationController::class, 'create'])->name('observations.create');
+        Route::post('/observations', [ObservationController::class, 'store'])->name('observations.store');
+        Route::get('/observations/{observation}/edit', [ObservationController::class, 'edit'])->name('observations.edit');
+        Route::put('/observations/{observation}', [ObservationController::class, 'update'])->name('observations.update');
+        Route::delete('/observations/{observation}', [ObservationController::class, 'destroy'])->name('observations.destroy');
+
+        //intervention_materiels
+        Route::get('/materiels', [MaterielInterventionController::class, 'index'])->name('materiel_intervention.index');
+        Route::post('/materiels', [MaterielInterventionController::class, 'store'])->name('materiel_intervention.store');
+        Route::delete('/materiels/{materiel}', [MaterielInterventionController::class, 'destroy'])->name('materiel_intervention.destroy');
+        
+        //intervention_terrains
+        Route::get('/terrains', [TerrainInterventionController::class, 'index'])->name('terrain_intervention.index');
+        Route::post('/terrains', [TerrainInterventionController::class, 'store'])->name('terrain_intervention.store');
+        Route::delete('/terrains/{terrain}', [TerrainInterventionController::class, 'destroy'])->name('terrain_intervention.destroy');
+    });
 
     // Admin-only routes
     Route::middleware(['check_admin'])->group(function () {
@@ -97,7 +127,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/ville/{ville}/update', [VilleController::class, 'update'])->name('ville.update');
         Route::delete('/ville/{ville}/delete', [VilleController::class, 'delete'])->name('ville.delete');
 
-        Route::get('/informations', [InformationsController::class, 'index'])->name('informations.index');
         Route::get('/informations/create', [InformationsController::class, 'create'])->name('informations.create');
         Route::post('/informations', [InformationsController::class, 'store'])->name('informations.store');
         Route::get('/informations/{informations}/edit', [InformationsController::class, 'edit'])->name('informations.edit');
@@ -105,32 +134,6 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
-
-
-use App\Http\Controllers\ObservationController;
-
-Route::prefix('intervention/{intervention}')->group(function () {
-    Route::get('/observations', [ObservationController::class, 'index'])->name('observations.index');
-    Route::get('/observations/create', [ObservationController::class, 'create'])->name('observations.create');
-    Route::post('/observations', [ObservationController::class, 'store'])->name('observations.store');
-    Route::get('/observations/{observation}/edit', [ObservationController::class, 'edit'])->name('observations.edit');
-    Route::put('/observations/{observation}', [ObservationController::class, 'update'])->name('observations.update');
-    Route::delete('/observations/{observation}', [ObservationController::class, 'destroy'])->name('observations.destroy');
-});
-
-use App\Http\Controllers\MaterielInterventionController;
-
-Route::prefix('intervention/{intervention}')->group(function () {
-    Route::get('/materiels', [MaterielInterventionController::class, 'index'])->name('materiel_intervention.index');
-    Route::post('/materiels', [MaterielInterventionController::class, 'store'])->name('materiel_intervention.store');
-    Route::delete('/materiels/{materiel}', [MaterielInterventionController::class, 'destroy'])->name('materiel_intervention.destroy');
-});
-
-use App\Http\Controllers\TerrainInterventionController;
-
-Route::prefix('intervention/{intervention}')->group(function () {
-    Route::get('/terrains', [TerrainInterventionController::class, 'index'])->name('terrain_intervention.index');
-    Route::post('/terrains', [TerrainInterventionController::class, 'store'])->name('terrain_intervention.store');
-    Route::delete('/terrains/{terrain}', [TerrainInterventionController::class, 'destroy'])->name('terrain_intervention.destroy');
+Route::fallback(function () {
+    return redirect()->route('login')->with('error', "la page souhaité n'existe pas.");
 });

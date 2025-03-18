@@ -17,7 +17,7 @@
                             class="fas fa-plus-circle me-2"></i> Ajouter</a></li>
             </ul>
         </li>
-
+        @if(Auth::user()->privilege == 'admin')
         <div class="gestionMenu" style="padding-bottom: 37px;">
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('utilisateur.index') }}"><i
@@ -56,13 +56,14 @@
                         class="fas fa-info-circle me-2"></i> Informations</a>
             </li>
         </div>
-
-        {{-- <li class="nav-item">
-            <a class="nav-link text-white" href="#"><i class="fas fa-user me-2"></i> Mon Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>
-        </li> --}}
+        @elseif(Auth::user()->privilege == 'user')
+        <div class="gestionMenu" style="padding-bottom: 37px;">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{ route('informations.index') }}"><i
+                        class="fas fa-info-circle me-2"></i> Informations</a>
+            </li>
+        </div>
+    @endif
     </ul>
 </div>
 

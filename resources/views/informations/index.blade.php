@@ -5,9 +5,11 @@
 
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h1 class="me-3">Détails de l'entreprise</h1>
+            @if(Auth::user()->privilege == 'admin')
             <a href="{{ route('informations.edit', ['informations' => $informations]) }}" class="btn btn-warning">
                 <i class="fas fa-edit"></i> Modifier
             </a>
+            @endif
         </div>
         @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
