@@ -60,7 +60,11 @@
                             <td>{{ $membre->email }}</td>
                             <td>{{ $membre->adresse }}</td>
                             <td>{{ $membre->ville->nom }}</td>
-                            <td>{{ $membre->statut }}</td>
+                            <td>
+                                <span class="{{ $membre->statut === 'chef' ? 'badge bg-primary' : 'badge bg-secondary' }}">
+                                    {{ $membre->statut }}
+                                </span>
+                            </td>
                             <td>
                                 <form action="{{ route('equipe.detacherMembre', [$equipe->id, $membre->id]) }}"
                                     method="POST">

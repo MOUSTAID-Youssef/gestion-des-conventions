@@ -32,6 +32,9 @@
                     <strong>Téléphone :</strong> {{ Auth::user()->telephone }}
                 </p>
                 <p class="card-text" style="font-size: 18px; color: #444; margin-bottom: 8px;">
+                    <strong>Ville :</strong> {{ Auth::user()->ville->nom }}
+                </p>
+                <p class="card-text" style="font-size: 18px; color: #444; margin-bottom: 8px;">
                     <strong>Adresse :</strong> {{ Auth::user()->adresse }}
                 </p>
                 <p class="card-text" style="font-size: 18px; color: #444; margin-bottom: 8px;">

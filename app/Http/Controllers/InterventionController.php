@@ -27,9 +27,15 @@ class InterventionController extends Controller
     public function create()
     {
         $equipes = Equipe::all();
-        $villes = Ville::all();
         $causes = Cause::all();
         $types = Type::all();
+        $user = Auth::user();
+        // Si utilisateur normal, ne montrer que sa ville
+        if ($user->privilege !== 'admin') {
+            $villes = Ville::where('id', $user->id_ville)->get();
+        } else {
+            $villes = Ville::all();
+        }
         return view('intervention.create', [
             'villes' => $villes,
             'types' => $types,
@@ -76,9 +82,15 @@ class InterventionController extends Controller
             return redirect()->route('redirect');
         }
         $equipes = Equipe::all();
-        $villes = Ville::all();
         $causes = Cause::all();
         $types = Type::all();
+        $user = Auth::user();
+        // Si utilisateur normal, ne montrer que sa ville
+        if ($user->privilege !== 'admin') {
+            $villes = Ville::where('id', $user->id_ville)->get();
+        } else {
+            $villes = Ville::all();
+        }
         return view('intervention.edit', [
             'intervention' => $intervention,
             'villes' => $villes,
@@ -125,10 +137,10 @@ class InterventionController extends Controller
         $intervention->delete();
         return redirect(route('intervention.index'))->with('success', 'intervention supprimé avec succés');
     }
-    public function show(Intervention $intervention)
-    {
-        return view('intervention.show', ['intervention' => $intervention]);
-    }
+    // public function show(Intervention $intervention)
+    // {
+    //     return view('intervention.show', ['intervention' => $intervention]);
+    // }
 
     public function showMap()
     {
@@ -140,7 +152,7 @@ class InterventionController extends Controller
         } else {
             // Normal user can only see their own interventions
             $interventions = Intervention::with(['type', 'cause', 'equipe', 'ville', 'utilisateur'])
-                ->where('id_utilisateur', $user->id)
+                ->where('id_ville', $user->id_ville)
                 ->get();
         }
 

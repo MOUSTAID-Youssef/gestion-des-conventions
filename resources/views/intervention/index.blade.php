@@ -43,7 +43,14 @@
                         @foreach ($interventions as $intervention)
                             <tr>
                                 <td>{{ $intervention->id }}</td>
-                                <td>{{ $intervention->libelle }}</td>
+                                <td>
+                                    @if (empty($intervention->libelle))
+                                        <span style="color: red; font-weight: bold;">Sans libellé</span>
+                                    @else
+                                        {{ $intervention->libelle }}
+                                    @endif
+                                </td>
+                                
                                 <td>{{ $intervention->type ? $intervention->type->designation : '' }}</td>
                                 <td>{{ $intervention->date_intervention }}</td>
                                 <td>{{ $intervention->cause ? $intervention->cause->designation : '' }}</td>
