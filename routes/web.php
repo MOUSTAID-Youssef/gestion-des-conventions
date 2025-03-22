@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ObservationController;
 use App\Http\Controllers\MaterielInterventionController;
 use App\Http\Controllers\TerrainInterventionController;
+use Barryvdh\DomPDF\Facade as PDF;
 
 // public routes
 Route::get('/', [UtilisateurController::class, 'showLoginForm'])->name('login');
@@ -22,17 +23,22 @@ Route::post('/', [UtilisateurController::class, 'login'])->name('utilisateur.log
 
 // authentified users routes :
 Route::middleware(['auth'])->group(function () {
-    Route::get('/redirect', function () {return view('auth.redirect');})->name('redirect');
+    Route::get('/redirect', function () {
+        return view('auth.redirect');
+    })->name('redirect');
     Route::post('/logout', [UtilisateurController::class, 'logout'])->name('utilisateur.logout');
     Route::get('/logout', [UtilisateurController::class, 'logout'])->name('utilisateur.logout');
 
     Route::get('/intervention', [InterventionController::class, 'index'])->name('intervention.index');
     Route::get('/intervention/create', [InterventionController::class, 'create'])->name('intervention.create');
     Route::post('/intervention', [InterventionController::class, 'store'])->name('intervention.store');
+    Route::get('/intervention/{intervention}', [InterventionController::class, 'show'])->name('intervention.show');
     Route::get('/intervention/{intervention}/edit', [InterventionController::class, 'edit'])->name('intervention.edit');
     Route::put('/intervention/{intervention}/update', [InterventionController::class, 'update'])->name('intervention.update');
     Route::delete('/intervention/{intervention}/delete', [InterventionController::class, 'delete'])->name('intervention.delete');
     Route::get('/map', [InterventionController::class, 'showMap'])->name('map');
+    // PDF :
+    Route::get('intervention/{id}/pdf', [InterventionController::class, 'exportPDF'])->name('intervention.exportPDF');
 
     Route::get('/informations', [InformationsController::class, 'index'])->name('informations.index');
 
@@ -57,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/materiels', [MaterielInterventionController::class, 'index'])->name('materiel_intervention.index');
         Route::post('/materiels', [MaterielInterventionController::class, 'store'])->name('materiel_intervention.store');
         Route::delete('/materiels/{materiel}', [MaterielInterventionController::class, 'destroy'])->name('materiel_intervention.destroy');
-        
+
         //intervention_terrains
         Route::get('/terrains', [TerrainInterventionController::class, 'index'])->name('terrain_intervention.index');
         Route::post('/terrains', [TerrainInterventionController::class, 'store'])->name('terrain_intervention.store');

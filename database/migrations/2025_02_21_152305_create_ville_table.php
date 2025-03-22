@@ -10,7 +10,7 @@ class CreateVilleTable extends Migration
     {
         Schema::create('ville', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('nom')->unique();
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
             $table->float('lat1', 10, 6);

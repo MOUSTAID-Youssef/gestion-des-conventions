@@ -9,6 +9,7 @@ use App\Models\Equipe;
 use App\Models\Cause;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class InterventionController extends Controller
 {
@@ -137,10 +138,10 @@ class InterventionController extends Controller
         $intervention->delete();
         return redirect(route('intervention.index'))->with('success', 'intervention supprimé avec succés');
     }
-    // public function show(Intervention $intervention)
-    // {
-    //     return view('intervention.show', ['intervention' => $intervention]);
-    // }
+    public function show(Intervention $intervention)
+    {
+        return view('intervention.show', ['intervention' => $intervention]);
+    }
 
     public function showMap()
     {
@@ -157,5 +158,28 @@ class InterventionController extends Controller
         }
 
         return view('map', compact('interventions'));
+    }
+
+
+    // public function exportPDF($id)
+    // {
+    //     $intervention = Intervention::find($id);
+
+    //     $pdf = PDF::loadView('intervention.pdf', compact('intervention'));
+    //     return $pdf->download('intervention_' . $intervention->id . '.pdf');
+    // }
+    public function exportPDF($id)
+    {
+        // Trouver l'intervention dans la base de données en utilisant l'ID
+        $intervention = Intervention::find($id);
+
+        // Charger la vue avec les données
+        $pdf = PDF::loadView('intervention.pdf', compact('intervention'));
+
+        // Générer un nom de fichier avec l'ID de l'intervention
+        $filename = 'intervention_numero_' . $intervention->id . '.pdf';
+
+        // Télécharger le PDF avec le nom dynamique
+        return $pdf->download($filename);
     }
 }

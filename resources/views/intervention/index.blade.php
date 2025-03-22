@@ -32,6 +32,7 @@
                             <th>Ville</th>
                             <th>Adresse</th>
                             <th>Utilisateur</th>
+                            <th>Détails</th>
                             <th>Observations</th>
                             <th>Nature terrain</th>
                             <th>Matériels</th>
@@ -58,6 +59,12 @@
                                 <td>{{ $intervention->ville ? $intervention->ville->nom : '' }}</td>
                                 <td>{{ $intervention->adresse }}</td>
                                 <td>{{ $intervention->utilisateur ? $intervention->utilisateur->login : '' }}
+                                </td>
+                                <td>
+                                    <a href="{{ route('intervention.show', ['intervention' => $intervention->id]) }}"
+                                        class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('observations.index', ['intervention' => $intervention->id]) }}"

@@ -21,7 +21,7 @@ class VilleController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nom' => 'required|string|max:255',
+            'nom' => 'required|string|max:255|unique:ville,nom',
             'latitude' => 'required|numeric|max:255',
             'longitude' => 'required|numeric|max:255|',
             'lat1' => 'required|numeric|max:255',
@@ -41,7 +41,7 @@ class VilleController extends Controller
     public function update(Ville $ville, Request $request)
     {
         $data = $request->validate([
-            'nom' => 'required|string|max:255',
+            'nom' => 'required|string|max:255|unique:ville,nom',
             'latitude' => 'required|numeric|max:255',
             'longitude' => 'required|numeric|max:255|',
             'lat1' => 'required|numeric|max:255',

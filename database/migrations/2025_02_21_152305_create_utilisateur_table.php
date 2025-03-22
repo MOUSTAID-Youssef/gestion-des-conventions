@@ -13,7 +13,7 @@ class CreateUtilisateurTable extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('login');
+            $table->string('login')->unique();
             $table->string('password');
             $table->string('cin');
             $table->string('telephone');

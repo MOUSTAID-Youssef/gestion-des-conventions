@@ -47,7 +47,9 @@
                             <p class="card-text"><strong>Ville:</strong> ${intervention.ville ? intervention.ville.nom : ''}</p>
                             ${intervention.photo ? `<img src="/storage/${intervention.photo}" style="width: 100px; height: 100px;"/>` : ''}
                             <br>
-                            <a href="/intervention/${intervention.id}/edit" class="btn btn-primary mt-2">Modifier l'intervention</a>
+                            <a href="/intervention/${intervention.id}" class="btn btn-info mt-2"><i class="fas fa-eye"></i> Consulter</a><br>
+                            <a href="/intervention/${intervention.id}/edit" class="btn btn-warning mt-2"><i class="fas fa-edit"></i> Modifier</a><br>
+                            <a href="/intervention/${intervention.id}/pdf" class="btn btn-success mt-2"><i class="fas fa-file-pdf"></i> Imprimer</a>
                         </div>
                     </div>
                 `;
