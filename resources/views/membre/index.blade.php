@@ -68,6 +68,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="d-flex justify-content-center mt-3">
+            {{ $membres->links('vendor.pagination.bootstrap-4') }}
+        </div>   
         @endif
     </div>
 @endsection

@@ -9,7 +9,8 @@ use App\Models\Equipe;
 use App\Models\Cause;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
-use PDF;
+use Barryvdh\DomPDF\Facade\PDF;
+
 
 class InterventionController extends Controller
 {
@@ -17,11 +18,12 @@ class InterventionController extends Controller
     {
         $user = Auth::user();
         if ($user->privilege == 'admin') {
-            $interventions = Intervention::with(['ville', 'utilisateur'])->get();
+            $interventions = Intervention::with(['ville', 'utilisateur'])->paginate(10);;
         } else {
             $interventions = Intervention::with(['ville', 'utilisateur'])
                 ->where('id_utilisateur', $user->id)
-                ->get();
+                // ->get();
+                ->paginate(10);
         }
         return view('intervention.index', ['interventions' => $interventions]);
     }

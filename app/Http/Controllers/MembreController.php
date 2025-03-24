@@ -10,7 +10,7 @@ class MembreController extends Controller
 {
     public function index()
     {
-        $membres = Membre::with('ville')->get();
+        $membres = Membre::with('ville')->paginate(10);
         return view('membre.index', ['membres' => $membres]);
     }
     public function create()

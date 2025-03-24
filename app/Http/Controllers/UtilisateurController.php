@@ -12,7 +12,7 @@ class UtilisateurController extends Controller
 {
     public function index()
     {
-        $utilisateurs = Utilisateur::with('ville')->get();
+        $utilisateurs = Utilisateur::with('ville')->paginate(10);
         return view('utilisateur.index', ['utilisateurs' => $utilisateurs]);
     }
     public function create()
@@ -98,6 +98,8 @@ class UtilisateurController extends Controller
         Auth::logout();
         return redirect('/')->with('success', 'Déconnexion réussie');
     }
+
+    
     public function showLoginForm()
     {
         if (Auth::check()) {
