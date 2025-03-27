@@ -126,7 +126,6 @@
 }
 
 
-
 /* Responsive behavior on smaller screens (no scrolling) */
 @media (max-width: 768px) {
     .table-striped th, .table-striped td {
@@ -165,7 +164,8 @@ body {
 /* Table Container to enable scrolling */
 .table-container {
     overflow-x: auto;   /* Allows horizontal scrolling */    /* Adds some space around the table */
-    max-width: 974px;     /* Prevents the table from overflowing beyond the viewport */
+    /* max-width: 974vh; */
+    max-width: 100%;
 }
 
 /* Table Style */
